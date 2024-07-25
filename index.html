@@ -3,7 +3,7 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <script>
 
-const data = await d3.csv("Agrofood_co2_emission.csv", function(data) {
+const data = d3.csv("Agrofood_co2_emission.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
         console.log(data[i].Area);
         console.log(data[i].Year);
