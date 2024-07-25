@@ -2,15 +2,14 @@
 <html>
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <script>
-
+async function init() {
 const data = await d3.csv("/data/Agrofood_co2_emission.csv", function(data) {
     for (var i = 0; i < 5; i++) {
         console.log(data[i].Area);
         console.log(data[i].Year);
     }
 });
-
-
+}
 
 </script>
 </body>
