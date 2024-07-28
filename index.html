@@ -42,6 +42,7 @@ var geojson;
 d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, world) {
   if (error) throw error;
   geojson = topojson.feature(world, world.objects.countries).features;
+ 
 });
 
 d3.csv("/data/worldfao.csv", function(error, d) {
@@ -50,8 +51,14 @@ d3.csv("/data/worldfao.csv", function(error, d) {
      .data(geojson)
      .enter().append("path")
      .attr("d", path)
-     .attr("fill", function() {
-      return colorScale("2008-2010");
+     .attr("fill", function(b) {
+      if (d.Year == "2008-2010") {
+        return colorScale(d.Value);
+      }
+      else {
+        return colorScale(0);
+      }
+      
      });
 });
 // d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, world) {
