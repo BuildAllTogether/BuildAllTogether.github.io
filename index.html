@@ -53,9 +53,11 @@ d3.csv("/data/worldfao.csv", function(error, d) {
      .attr("d", path)
      .attr("fill", function(b) {
       if (d.Year == "2008-2010") {
+        console.log(d.Value);
         return colorScale(d.Value);
       }
       else {
+        console.log(d.Value);
         return colorScale(0);
       }
       
