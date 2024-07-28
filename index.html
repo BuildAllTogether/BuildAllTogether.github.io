@@ -42,7 +42,7 @@ var geojson;
 d3.json("https://unpkg.com/world-atlas@1/world/110m.json"), function(error, world) {
   geojson = topojson.feature(world, world.objects.countries).features;
 };
-
+console.log(geojson);
 d3.csv("/data/worldfao.csv", function(error, d) {
   if (error) throw error;
   svg.selectAll("path")
