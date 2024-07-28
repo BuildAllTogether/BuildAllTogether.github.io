@@ -7,9 +7,15 @@
 <script src="https://unpkg.com/topojson-client@3"></script>
 <script>
 
-d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(topology => {
-  const geojson = topojson.feature(topology, topology.objects.countries).features;
-
+var svg = d3.select("body").append("svg");
+var path = d3.geoPath().projection(d3.geoMercator());
+d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, world) {
+  if (error) throw error;
+  svg.selectAll("path")
+     .data(topojson.feature(world,world.objects.countries).features)
+     .enter().append("path")
+     .attr("d", path);
+});
 
 </script>
 </body>
