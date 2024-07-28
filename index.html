@@ -4,8 +4,28 @@
 <body style="margin-top:300;margin-left:400">
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
-<a href="#" class="previous round">&#8249;</a>
-<a href="#" class="next round">&#8250;</a>
+<style>
+  a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .previous {
+    background-color: #f1f1f1;
+    color: black;
+  }
+  
+  .next {
+    background-color: #0452aa;
+    color: white;
+  }
+  
+  .round {
+    border-radius: 50%;
+  }
+  </style>
+<a href="#" class="previous">&#8249;</a>
+<a href="#" class="next">&#8250;</a>
 <script>
 
 var svg = d3.select("svg")
