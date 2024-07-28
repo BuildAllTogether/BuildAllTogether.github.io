@@ -7,9 +7,9 @@
 // async function init() {
 // const data = await d3.csv("/data/fao.csv")
 
-const svg = d3.select("svg"),
-  width = +svg.attr("width"),
-  height = +svg.attr("height");
+const svg = d3.select("svg");
+const width = svg.attr("width");
+const height = svg.attr("height");
 
 const path = d3.geoPath();
 const projection = d3.geoMercator()
@@ -23,7 +23,7 @@ const colorScale = d3.scaleLinear([0,100], ["white", "blue"])
 
   Promise.all([
 d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"),
-d3.csv("worldfao.csv", function(d) {
+d3.csv("/data/worldfao.csv", function(d) {
     data.set(d.Area1, +d.Value)
 })
 ]).then(function(loadData){
