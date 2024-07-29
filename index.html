@@ -110,13 +110,14 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
     d3.select("#yearButton").on("change", function(event, d) {
     const selectedYear = d3.select(this).property("value");
     update(selectedYear);
-});
+    });
   
   
 
 
-}).catch(e => {
+  }).catch(e => {
     console.log(e);
+  });
 });
 </script>
 
