@@ -102,7 +102,7 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
      function update(selectedYear) {
       console.log("update");
       console.log(data);
-      if (selectedYear == c.Year) {
+      if (selectedYear == data.Year) {
         map.set(data["Area Code (M49)"], +data.Value);
       }
     };
