@@ -39,7 +39,7 @@ var colorScale = d3.scaleLinear([0, 100], ["black", "blue"]);
 var svg = d3.select("svg");
 var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
 var geojson;
-let data = Map();
+let data = new Map();
 d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) {
   geojson = topojson.feature(world, world.objects.countries).features;
   
