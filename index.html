@@ -44,6 +44,9 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
   geojson = topojson.feature(world, world.objects.countries).features;
   
   d3.csv("/data/worldfao.csv", function(d) {
+    if (d.Year == "2008-2010") {
+      console.log(d);
+    }
     data.set(d["Area Code (M49)"], +d.Value)
   }).then(function() {
   svg.selectAll("path")
