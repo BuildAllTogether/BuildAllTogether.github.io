@@ -52,14 +52,11 @@ d3.csv("/data/worldfao.csv", function(error, d) {
      .enter().append("path")
      .attr("d", path)
      .attr("fill", function(b) {
-      console.log(b)
-      console.log(d)
-      if (d.Year == "2008-2010") {
-        console.log(d.Value);
+      console.log(d[11])
+      if (d[11] == "2008-2010") {
         return colorScale(d.Value);
       }
       else {
-        console.log(d.Value);
         return colorScale(0);
       }
       
