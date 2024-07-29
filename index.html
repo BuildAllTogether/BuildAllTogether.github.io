@@ -48,22 +48,23 @@ for (var i = 1999; i < 2023; i++) {
 
   var years = first.concat("-", last);
   dates.push(years);
-}
-console.log(dates);
+};
+// console.log(dates);
 
 d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) {
   geojson = topojson.feature(world, world.objects.countries).features;
   
   // var dates = ["1999-2001", "2000-2002", "2001-2003", "2002-2004", "2003-2005", "2004-2006", "2005-2007", "2006-2008", "2007-2009", "2008-2010", "2009-2011", "2010-2012", "2011-2013", "20"]
   d3.csv("/data/worldfao.csv", function(d) {
-    d3.select("#yearButton")
-      .selectAll('myOptions')
-      .data(dates)
-      .enter()
-    	.append('option')
-      .text(function (d) { return d; }) // text showed in the menu
-      .attr("value", function (d) { return d; });
-      
+    let year = d.Year;
+    // d3.select("#yearButton")
+    //   .selectAll('myOptions')
+    //   .data(dates)
+    //   .enter()
+    // 	.append('option')
+    //   .text(function (d) { return d; })
+    //   .attr("value", function (d) { return d; });
+
     if (d.Year == "2008-2010") {
       data.set(d["Area Code (M49)"], +d.Value);
     }
@@ -79,16 +80,15 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       
      });
 });
+  
+  // d3.select("#yearButton").on("change", function(event, d) {
+
+  // })
+
+
 }).catch(e => {
     console.log(e);
 });
-// d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, world) {
-//   if (error) throw error;
-//   svg.selectAll("path")
-//      .data(topojson.feature(world,world.objects.countries).features)
-//      .enter().append("path")
-//      .attr("d", path);
-// });
 </script>
 
 </body>
