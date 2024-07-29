@@ -40,7 +40,7 @@ var svg = d3.select("svg");
 var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
 var geojson;
 let data = new Map();
-var dates = []
+var dates = new Array();
   for (var i = 1999; i < 2023; i++) {
     var first = String(i);
     var last = String(i + 2);
