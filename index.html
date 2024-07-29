@@ -4,6 +4,7 @@
 <body style="margin-top:300;margin-left:400">
 <div class="top-left">Food Insecurity by Percentage between 1999-2024</div>
 <div id="scale"></div>
+<div id="scaleinfo">black = 0% red = 100%</div>
 <a href="#" class="next">&#8250;</a>
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
@@ -38,7 +39,13 @@
   #scale {
   height: 30px;
   width: 200px;
+  position: absolute;
+  top: 200px;
   background-image: linear-gradient(to right, black, red);
+  }
+  #scaleinfo {
+    position: absolute;
+    top: 250px;
   }
 
   .top-left {
@@ -105,6 +112,8 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       console.log(selectedYear);
       console.log(data);
       if (selectedYear == data.Year) {
+        console.log("data inside");
+        console.log(data);
         map.set(data["Area Code (M49)"], +data.Value);
       }
     };
