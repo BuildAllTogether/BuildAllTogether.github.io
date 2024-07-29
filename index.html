@@ -68,11 +68,15 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
   // var dates = ["1999-2001", "2000-2002", "2001-2003", "2002-2004", "2003-2005", "2004-2006", "2005-2007", "2006-2008", "2007-2009", "2008-2010", "2009-2011", "2010-2012", "2011-2013", "20"]
   d3.csv("/data/worldfao.csv", function(data) {
 
-    function update(selectedYear) {
-      data.map(function(d) {return {id: d["Area Code (M49)"], value:d[selectedYear]}})
+    if (data.Year == "1999-2001"){
+      data.set(data["Area Code (M49)"], +data.Value);
     }
-    let year = data.Year;
-    data.set(data["Area Code (M49)"], +data.Value);
+
+    function update(selectedYear) {
+      if (selectedYear == data.Year) {
+        data.set(data["Area Code (M49)"], +data.Value);
+      }
+    };
 
 
   }).then(function(c) {
