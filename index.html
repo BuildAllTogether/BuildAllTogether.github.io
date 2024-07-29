@@ -2,7 +2,7 @@
 <html>
 
 <body style="margin-top:300;margin-left:400">
-<div class="top-left">Food Insecurity 1999-2024</div>
+<div class="top-left">Food Insecurity by Percentage between 1999-2024</div>
 <a href="#" class="next">&#8250;</a>
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
@@ -81,22 +81,10 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
   
   // var dates = ["1999-2001", "2000-2002", "2001-2003", "2002-2004", "2003-2005", "2004-2006", "2005-2007", "2006-2008", "2007-2009", "2008-2010", "2009-2011", "2010-2012", "2011-2013", "20"]
   d3.csv("/data/worldfao.csv", function(data) {
-
     if (data.Year == "1999-2001"){
       map.set(data["Area Code (M49)"], +data.Value);
     }
-
-    function update(selectedYear) {
-      console.log("update");
-      console.log(csv);
-      if (selectedYear == csv.Year) {
-        map.set(csv["Area Code (M49)"], +csv.Value);
-      }
-    };
-
-    d3.select("#yearButton").on("change", function(event, d) {
-    const selectedYear = d3.select(this).property("value");
-    update(selectedYear);
+    return data;
   });
   }).then(function(c) {
   svg.selectAll("path")
@@ -109,6 +97,18 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       return colorScale(b.Value)
       
      });
+
+     function update(selectedYear) {
+      console.log("update");
+      console.log(c);
+      if (selectedYear == c.Year) {
+        map.set(c["Area Code (M49)"], +c.Value);
+      }
+    };
+
+    d3.select("#yearButton").on("change", function(event, d) {
+    const selectedYear = d3.select(this).property("value");
+    update(selectedYear);
 });
   
   
