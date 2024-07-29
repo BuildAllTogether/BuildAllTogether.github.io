@@ -7,7 +7,7 @@
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
 <select id="yearButton"></select>
-<div class="rectangle"></div>
+<div id="scale"></div>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
 <style>
@@ -34,11 +34,12 @@
     margin-right: 600px;
   }
 
-  .rectangle {
+  #scale {
   height: 30px;
   width: 200px;
-  background-image: lnear-gradient(black, red);
+  background-image: lnear-gradient(to right, black, red);
   }
+
   .top-left {
   position: absolute;
   top: 10px;
