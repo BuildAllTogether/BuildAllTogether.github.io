@@ -2,6 +2,7 @@
 <html>
 
 <body style="margin-top:300;margin-left:400">
+<select id="yearButton"></select>
 <a href="#" class="next">&#8250;</a>
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
@@ -41,19 +42,27 @@ var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
 var geojson;
 let data = new Map();
 var dates = new Array();
-  for (var i = 1999; i < 2023; i++) {
-    var first = String(i);
-    var last = String(i + 2);
+for (var i = 1999; i < 2023; i++) {
+  var first = String(i);
+  var last = String(i + 2);
 
-    var years = first.concat("-", last);
-    dates.append(years);
-  }
-  console.log("dates");
+  var years = first.concat("-", last);
+  dates.push(years);
+}
+console.log("dates");
+
 d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) {
   geojson = topojson.feature(world, world.objects.countries).features;
   
   // var dates = ["1999-2001", "2000-2002", "2001-2003", "2002-2004", "2003-2005", "2004-2006", "2005-2007", "2006-2008", "2007-2009", "2008-2010", "2009-2011", "2010-2012", "2011-2013", "20"]
   d3.csv("/data/worldfao.csv", function(d) {
+    d3.select("#yearButton")
+      .selectAll('myOptions')
+      .data(allGroup)
+      .enter()
+    	.append('option')
+      .text(function (d) { return d; }) // text showed in the menu
+      .attr("value", function (d) { return d; }) 
     if (d.Year == "2008-2010") {
       data.set(d["Area Code (M49)"], +d.Value);
     }
