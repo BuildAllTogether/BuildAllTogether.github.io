@@ -62,7 +62,8 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       .enter()
     	.append('option')
       .text(function (d) { return d; }) // text showed in the menu
-      .attr("value", function (d) { return d; }) 
+      .attr("value", function (d) { return d; });
+      
     if (d.Year == "2008-2010") {
       data.set(d["Area Code (M49)"], +d.Value);
     }
