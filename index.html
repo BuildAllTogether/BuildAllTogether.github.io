@@ -54,6 +54,8 @@ var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
 var geojson;
 let map = new Map();
 var dates = new Array();
+var csv = d3.csv("/data/worldfao.csv");
+console.log(csv);
 for (var i = 1999; i < 2023; i++) {
   var first = String(i);
   var last = String(i + 2);
@@ -85,9 +87,9 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
 
     function update(selectedYear) {
       console.log("update");
-      console.log(data);
-      if (selectedYear == data.Year) {
-        map.set(data["Area Code (M49)"], +data.Value);
+      console.log(csv);
+      if (selectedYear == csv.Year) {
+        map.set(csv["Area Code (M49)"], +csv.Value);
       }
     };
 
