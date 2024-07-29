@@ -132,9 +132,6 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       update(selectedYear);
 
       svg.selectAll("path")
-      .data(geojson)
-      .enter().append("path")
-      .attr("d", path)
       .attr("fill", function(b) {
         let id = b.id;
         b.Value = map.get(id) || 0;
