@@ -3,11 +3,12 @@
 
 <body style="margin-top:300;margin-left:400">
 <div class="top-left">Food Insecurity by Percentage between 1999-2024</div>
+<div id="scale"></div>
 <a href="#" class="next">&#8250;</a>
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
 <select id="yearButton"></select>
-<div id="scale"></div>
+
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
 <style>
@@ -37,7 +38,7 @@
   #scale {
   height: 30px;
   width: 200px;
-  background-image: lnear-gradient(to right, black, red);
+  background-image: linear-gradient(to right, black, red);
   }
 
   .top-left {
@@ -101,6 +102,7 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
 
      function update(selectedYear) {
       console.log("update");
+      console.log(selectedYear);
       console.log(data);
       if (selectedYear == data.Year) {
         map.set(data["Area Code (M49)"], +data.Value);
@@ -110,6 +112,16 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
     d3.select("#yearButton").on("change", function(event, d) {
     const selectedYear = d3.select(this).property("value");
     update(selectedYear);
+
+    svg.selectAll("path")
+     .data(geojson)
+     .enter().append("path")
+     .attr("d", path)
+     .attr("fill", function(b) {
+      let id = b.id;
+      b.Value = map.get(id) || 0;
+      return colorScale(b.Value)
+     });
     });
   
   
