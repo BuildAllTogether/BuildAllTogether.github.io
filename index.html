@@ -40,12 +40,10 @@ var svg = d3.select("svg");
 var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
 var geojson;
 
-d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(error, world) {
-  if (error) throw error;
+d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) {
   geojson = topojson.feature(world, world.objects.countries).features;
   
-  d3.csv("/data/worldfao.csv").then(function(error, d) {
-  if (error) throw error;
+  d3.csv("/data/worldfao.csv").then(function(d) {
   svg.selectAll("path")
      .data(geojson)
      .enter().append("path")
@@ -63,8 +61,8 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(error, 
       
      });
 });
-
-
+}).catch(e => {
+    console.log(e);
 });
 // d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, world) {
 //   if (error) throw error;
