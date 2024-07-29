@@ -38,7 +38,7 @@
 var colorScale = d3.scaleLinear([0, 100], ["white", "blue"]);
 var svg = d3.select("svg");
 var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
-var world = await d3.json("https://unpkg.com/world-atlas@1/world/110m.json");
+const world = d3.json("https://unpkg.com/world-atlas@1/world/110m.json");
 var geojson =  topojson.feature(world, world.objects.countries).features;
 
 d3.csv("/data/worldfao.csv").then(function(error, d) {
