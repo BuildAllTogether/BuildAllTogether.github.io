@@ -78,7 +78,10 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       }
     };
 
-
+    d3.select("#yearButton").on("change", function(event, d) {
+    const selectedYear = d3.select(this).property("value");
+    update(selectedYear);
+  });
   }).then(function(c) {
   svg.selectAll("path")
      .data(geojson)
@@ -86,16 +89,13 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
      .attr("d", path)
      .attr("fill", function(b) {
       let id = b.id;
-      b.Value = data.get(id) || 0;
+      b.Value = map.get(id) || 0;
       return colorScale(b.Value)
       
      });
 });
   
-  d3.select("#yearButton").on("change", function(event, d) {
-    const selectedYear = d3.select(this).property("value");
-    update(selectedYear);
-  })
+  
 
 
 }).catch(e => {
