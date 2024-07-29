@@ -2,11 +2,12 @@
 <html>
 
 <body style="margin-top:300;margin-left:400">
-
+<div class="top-left">Food Insecurity 1999-2024</div>
 <a href="#" class="next">&#8250;</a>
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
 <select id="yearButton"></select>
+<div class="rectangle"></div>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
 <style>
@@ -33,6 +34,16 @@
     margin-right: 600px;
   }
 
+  .rectangle {
+  height: 30px;
+  width: 200px;
+  background-color: linear-gradient(black, red);
+  }
+  .top-left {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  }
   
   </style>
 
@@ -72,16 +83,16 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       map.set(data["Area Code (M49)"], +data.Value);
     }
 
-    function update(selectedYear) {
-      if (selectedYear == data.Year) {
-        map.set(data["Area Code (M49)"], +data.Value);
-      }
-    };
+  //   function update(selectedYear) {
+  //     if (selectedYear == data.Year) {
+  //       map.set(data["Area Code (M49)"], +data.Value);
+  //     }
+  //   };
 
-    d3.select("#yearButton").on("change", function(event, d) {
-    const selectedYear = d3.select(this).property("value");
-    update(selectedYear);
-  });
+  //   d3.select("#yearButton").on("change", function(event, d) {
+  //   const selectedYear = d3.select(this).property("value");
+  //   update(selectedYear);
+  // });
   }).then(function(c) {
   svg.selectAll("path")
      .data(geojson)
