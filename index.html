@@ -50,8 +50,8 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
      .attr("d", path)
      .attr("fill", function(b) {
       // console.log(d[11])
-      console.log(d.Value)
-      if (d.Year == "2008-2010") {
+      console.log(d[11])
+      if (d[11] == "2008-2010") {
         // console.log(d[11]);
         return colorScale(d.Value);
       }
