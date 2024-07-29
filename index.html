@@ -41,7 +41,7 @@ var colorScale = d3.scaleLinear([0, 100], ["black", "red"]);
 var svg = d3.select("svg");
 var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
 var geojson;
-let data = new Map();
+let map = new Map();
 var dates = new Array();
 for (var i = 1999; i < 2023; i++) {
   var first = String(i);
@@ -69,12 +69,12 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
   d3.csv("/data/worldfao.csv", function(data) {
 
     if (data.Year == "1999-2001"){
-      data.set(data["Area Code (M49)"], +data.Value);
+      map.set(data["Area Code (M49)"], +data.Value);
     }
 
     function update(selectedYear) {
       if (selectedYear == data.Year) {
-        data.set(data["Area Code (M49)"], +data.Value);
+        map.set(data["Area Code (M49)"], +data.Value);
       }
     };
 
