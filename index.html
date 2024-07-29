@@ -105,17 +105,21 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       return d.Year == "1999-2001";
      });
 
-     map.set(rows["Area Code (M49)"], +rows.Value);
+     for (var i = 0; i < rows.length; i ++){
+      map.set(rows[i]["Area Code (M49)"], +rows[i].Value);
+     }
 
      function update(selectedYear) {
       console.log("update");
       console.log(selectedYear);
       console.log(data);
-      console.log(data.Year);
-      if (selectedYear == data.Year) {
-        console.log("data inside");
-        console.log(data);
-        map.set(data["Area Code (M49)"], +data.Value);
+      // console.log(data.Year);
+      for (var i = 0; i < data.length; i ++){
+        if (selectedYear == data[i].Year) {
+          console.log("data inside");
+          console.log(data[i]);
+          map.set(data[i]["Area Code (M49)"], +data[i].Value);
+        }
       }
     };
 
