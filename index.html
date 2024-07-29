@@ -5,7 +5,7 @@
 <a href="#" class="next">&#8250;</a>
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
 <style>
   a {
@@ -52,9 +52,10 @@ d3.csv("/data/worldfao.csv", function(error, d) {
      .enter().append("path")
      .attr("d", path)
      .attr("fill", function(b) {
-      console.log(d[11])
-      if (d[11] == "2008-2010") {
-        console.log(d[11]);
+      // console.log(d[11])
+      console.log(d.Value)
+      if (d.Year == "2008-2010") {
+        // console.log(d[11]);
         return colorScale(d.Value);
       }
       else {
