@@ -35,7 +35,7 @@
   </style>
 
 <script>
-var colorScale = d3.scaleLinear([0, 100], ["white", "blue"]);
+var colorScale = d3.scaleLinear([0, 100], ["black", "blue"]);
 var svg = d3.select("svg");
 var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
 var geojson;
@@ -43,16 +43,16 @@ var geojson;
 d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) {
   geojson = topojson.feature(world, world.objects.countries).features;
   
-  d3.csv("/data/worldfao.csv").then(function(d) {
+  d3.csv("/data/worldfao.csv").then(function(d, i) {
   svg.selectAll("path")
      .data(geojson)
      .enter().append("path")
      .attr("d", path)
      .attr("fill", function(b) {
       // console.log(d[11])
-      console.log(d[0].Value)
+      console.log(d[i].Value)
       // console.log(d[11])
-      if (d[0].Value == "2008-2010") {
+      if (d[i].Value == "2008-2010") {
         // console.log(d[11]);
         return colorScale(d.Value);
       }
