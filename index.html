@@ -93,7 +93,7 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
   d3.csv("/data/worldfao.csv").then(function(data) {
   
      let rows = data.filter(function(d) {
-      if (d.Year == "1999-2001" && d.Item == "Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)") {
+      if (d.Year == "1999-2001" && data.Item == "Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)") {
 
       }
       return d.Year == "1999-2001";
@@ -119,7 +119,7 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
       console.log(data);
       // console.log(data.Year);
       for (var i = 0; i < data.length; i ++){
-        if (selectedYear == data[i].Year && d.Item == "Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)") {
+        if (selectedYear == data[i].Year && data.Item == "Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)") {
           console.log("data inside");
           console.log(data[i]);
           map.set(data[i]["Area Code (M49)"], +data[i].Value);
