@@ -45,29 +45,17 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
   
   d3.csv("/data/worldfao.csv", function(d) {
     if (d.Year == "2008-2010") {
-      console.log(d);
+      data.set(d["Area Code (M49)"], +d.Value);
     }
-    data.set(d["Area Code (M49)"], +d.Value)
-  }).then(function() {
+  }).then(function(c) {
   svg.selectAll("path")
      .data(geojson)
      .enter().append("path")
      .attr("d", path)
      .attr("fill", function(b) {
-      // console.log(d[11])
-      // console.log(d)
-      console.log(d)
       let id = b.id;
-      // console.log(parseInt(b.id))
-      // console.log(b.id)
-      // console.log(d[11])
-      if (c.Year == "2008-2010") {
-        // console.log(d[11]);
-        return colorScale(d.Value);
-      }
-      else {
-        return colorScale(0);
-      }
+      b.Value = data.get(id) || 0;
+      return colorScale(b.Value)
       
      });
 });
