@@ -5,7 +5,7 @@
 <a href="#" class="next">&#8250;</a>
 <a href="#" class="previous">&#8249;</a>
 <svg height="800px" width="100%"></svg>
-<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
 <style>
   a {
@@ -38,13 +38,18 @@
 var colorScale = d3.scaleLinear([0, 100], ["white", "blue"]);
 var svg = d3.select("svg");
 var path = d3.geoPath().projection(d3.geoMercator().translate([700,500]));
-const world = d3.json("https://unpkg.com/world-atlas@1/world/110m.json");
-var geojson =  topojson.feature(world, world.objects.countries).features;
+var geojson;
 
-d3.csv("/data/worldfao.csv").then(function(error, d) {
+
+d3.queue()
+  .defer(d3.json, "https://unpkg.com/world-atlas@1/world/110m.json")
+  .defer(d3.json, "/data/worldfao.csv")
+  .await(build);
+
+function build(error, world) {
   if (error) throw error;
   svg.selectAll("path")
-     .data(geojson)
+     .data(topojson.feature(world, world.objects.countries).features)
      .enter().append("path")
      .attr("d", path)
      .attr("fill", function(b) {
@@ -59,7 +64,8 @@ d3.csv("/data/worldfao.csv").then(function(error, d) {
       }
       
      });
-});
+};
+
 // d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, world) {
 //   if (error) throw error;
 //   svg.selectAll("path")
