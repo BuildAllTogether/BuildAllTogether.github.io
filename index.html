@@ -45,7 +45,7 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
   
   d3.csv("/data/worldfao.csv", function(d) {
     data.set(d["Area Code (M49)"], +d.Value)
-  }).then(function(c) {
+  }).then(function() {
   svg.selectAll("path")
      .data(geojson)
      .enter().append("path")
@@ -53,7 +53,7 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) 
      .attr("fill", function(b) {
       // console.log(d[11])
       // console.log(d)
-      console.log(c)
+      console.log(d)
       let id = b.id;
       // console.log(parseInt(b.id))
       // console.log(b.id)
